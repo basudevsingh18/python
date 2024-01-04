@@ -4,4 +4,4 @@ This is a pet project of mine where I am trying to learn and develop my python s
 
 ## Installation
 
-Ensure python is installed and run the file (main.py)
+Ensure python is installed and run the file (main.py).
