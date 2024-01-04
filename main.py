@@ -98,56 +98,60 @@ def update_options(event):
 def create_gui():
     root = Tk()
 
-    root.title("Vehicle Import Calculator")
-    root.geometry('500x500')
+    try:
+        root.title("Vehicle Import Calculator")
+        root.geometry('500x500')
 
-    label_vehicle_cost = Label(root, text="What is the cost of the vehicle (Including insurance and freight) in USD?")
-    label_vehicle_cost.grid(row=0, column=0, sticky='w')
+        label_vehicle_cost = Label(root, text="What is the cost of the vehicle (Including insurance and freight) in USD?")
+        label_vehicle_cost.grid(row=0, column=0, sticky='w')
 
-    input_vehicle_cost = Entry(root)
-    input_vehicle_cost.grid(row=1, column=0, sticky='w')
+        input_vehicle_cost = Entry(root)
+        input_vehicle_cost.grid(row=1, column=0, sticky='w')
 
-    label_exchange_rate = Label(root, text="Please enter the exchange rate you are using (GYD to USD)")
-    label_exchange_rate.grid(row=2, column=0, sticky='w')
+        label_exchange_rate = Label(root, text="Please enter the exchange rate you are using (GYD to USD)")
+        label_exchange_rate.grid(row=2, column=0, sticky='w')
 
-    input_exchange_rate = Entry(root)
-    input_exchange_rate.grid(row=3, column=0, sticky='w')
+        input_exchange_rate = Entry(root)
+        input_exchange_rate.grid(row=3, column=0, sticky='w')
 
-    label_vehicle_age = Label(root, text="What is the Vehicle Age?")
-    label_vehicle_age.grid(row=4, column=0, sticky='w')
+        label_vehicle_age = Label(root, text="What is the Vehicle Age?")
+        label_vehicle_age.grid(row=4, column=0, sticky='w')
 
-    list_vehicle_age = StringVar()
-    input_vehicle_age = ttk.Combobox(root, textvariable=list_vehicle_age, values=('Four Years and Older', 'Four Years Old'))
-    input_vehicle_age.grid(row=5, column=0, sticky='w')
-    dict_vehicle_age = {'Four Years and Older' : 1, "Four Years Old" :  2}
+        list_vehicle_age = StringVar()
+        input_vehicle_age = ttk.Combobox(root, textvariable=list_vehicle_age, values=('Four Years and Older', 'Four Years Old'))
+        input_vehicle_age.grid(row=5, column=0, sticky='w')
+        dict_vehicle_age = {'Four Years and Older' : 1, "Four Years Old" :  2}
 
-    label_fuel_type = Label(root, text="Fuel Type")
-    label_fuel_type.grid(row=6, column=0, sticky='w')
+        label_fuel_type = Label(root, text="Fuel Type")
+        label_fuel_type.grid(row=6, column=0, sticky='w')
 
-    list_fuel_type = StringVar()
-    input_fuel_type = ttk.Combobox(root, textvariable=list_fuel_type)
-    input_fuel_type['values'] = ('Gasoline', 'Diesel', 'Electric')
-    input_fuel_type.grid(row=7, column=0, sticky='w')
-    dict_fuel_type = {'Gasoline': 1, 'Diesel': 2, 'Electric': 3}
-
-
-    list_engine_size = StringVar()
-    label_engine_size = Label(root, text="How many Cubic Centimeters (CC) is the vehicle?")
-    label_engine_size.grid(row=8, column=0, sticky='w')
-    input_engine_size = ttk.Combobox(root, textvariable=list_engine_size)
-    input_engine_size.grid(row=9, column=0, sticky='w')
-
-    input_fuel_type.bind("<<ComboboxSelected>>", update_options)
+        list_fuel_type = StringVar()
+        input_fuel_type = ttk.Combobox(root, textvariable=list_fuel_type)
+        input_fuel_type['values'] = ('Gasoline', 'Diesel', 'Electric')
+        input_fuel_type.grid(row=7, column=0, sticky='w')
+        dict_fuel_type = {'Gasoline': 1, 'Diesel': 2, 'Electric': 3}
 
 
-    button_calculate = Button(root, text="Calculate Costs", command=calculate_totals)
-    button_calculate.grid(row=10, column=0, sticky='w')
+        list_engine_size = StringVar()
+        label_engine_size = Label(root, text="How many Cubic Centimeters (CC) is the vehicle?")
+        label_engine_size.grid(row=8, column=0, sticky='w')
+        input_engine_size = ttk.Combobox(root, textvariable=list_engine_size)
+        input_engine_size.grid(row=9, column=0, sticky='w')
 
-    result_text = Text(root, wrap=WORD, height=15, width=80)
-    result_text.grid(row=11, column=0, sticky='w')
+        input_fuel_type.bind("<<ComboboxSelected>>", update_options)
 
 
-    root.mainloop()
+        button_calculate = Button(root, text="Calculate Costs", command=calculate_totals)
+        button_calculate.grid(row=10, column=0, sticky='w')
+
+        result_text = Text(root, wrap=WORD, height=15, width=80)
+        result_text.grid(row=11, column=0, sticky='w')
+
+
+        root.mainloop()
+        
+    except:
+        print("Error: Unable to create GUI.")
 
 if __name__ == "__main__":
     create_gui()
