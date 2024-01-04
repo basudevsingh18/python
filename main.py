@@ -1,140 +1,153 @@
-import datetime
+
+from tkinter import *
+from tkinter import ttk 
 import functions
 
-print("Welcome to Vehicle Duty Calculator")
-print("")
-print("Press 1 for menu")
+def calculate_totals():
+    vehicle_cost = input_vehicle_cost.get()
+    petrol_type = dict_fuel_type[input_fuel_type.get()]
+    engine_size = input_engine_size.get()
+    exchange_rate = input_exchange_rate.get()
+    vehicle_age = dict_vehicle_age[input_vehicle_age.get()]
 
-cif = 0
-duty = 0
-excise_tax = 0
-vat = 0
-total_duty = 0
-total_cost = 0
-
-today = datetime.date.today()
-year = today.year
-four_years_old_and_over  = int(year) - 4
-
-
-go_to_menu = int(input())
-
-if go_to_menu == 1:
-
-    #Getting exchange rate
-    print("Please enter the exchange rate you are using (GYD to USD)")
-    exchange_rate = int(input())
-
-    #Getting vehicle age
-    print("Press ""1"" if your vehicle age is Four Years and Over (i.e. Anytime before) " + str(four_years_old_and_over))
-    print("Press ""2"" if your vehicle age is Four Years Old (i.e. Anytime from) " + str(four_years_old_and_over))
-    vehicle_age = int(input())
-
-    #Vehicle age of Four years and Over    
-    if vehicle_age == 1:
-
-        #Getting petro type
-        print("Is the vehicle using Gasoline or Disel or Electric?")
-        print("Press ""1"" for Gasoline ")
-        print("Press ""2"" for Disel or Semi-Disel")
-        print("Press ""3"" for Electric")
-        petro_type = int(input())
-
-        #Gasoline Vehicle
-        if petro_type == 1:
-            print("How many Cubic Centimeters (CC) is the vehicle?")
-            print("Press 1 for 1000cc and below")
-            print("Press 2 for 1001cc to 1500cc")
-            print("Press 3 for 1501cc to 1800cc")
-            print("Press 4 for 1801cc to 2000cc")
-            print("Press 5 for 2001cc to 3000cc")
-            print("Press 6 for 3001cc and above")
-            gasoline_engine_cc = int(input())
-
-            print("What is the cost of the vehicle (Including insurance and freight) in USD?")
-            cif = int(input())
-            print(functions.get_total_duty_fyoo(cif, petro_type, gasoline_engine_cc, exchange_rate))
-
-        #Disel/Semi-Disel Vehicle
-        elif petro_type == 2:
-            print("How many Cubic Centimeters (CC) is the vehicle?")
-            print("Press 1 for 1500cc and below")
-            print("Press 2 for 1501cc to 2000cc")
-            print("Press 3 for 2001cc to 2500cc")
-            print("Press 4 for 2501cc to 3000cc")
-            print("Press 5 for 3001cc and above")
-            disel_engine_cc = int(input())
-
-            print("What is the cost of the vehicle (Including insurance and freight) in USD?")
-            cif = int(input())
-            print(functions.get_total_duty_fyoo(cif, petro_type, disel_engine_cc, exchange_rate))
-        
-        #Electric Vehicle
+    if int(vehicle_age) == 1:
+        if int(petrol_type) == 1:
+            if engine_size == '1000cc and below':
+                engine_size = 1
+            elif engine_size == '1001cc to 1500cc':
+                engine_size = 2
+            elif engine_size == '1501cc to 1800cc':
+                engine_size = 3
+            elif engine_size == '1801cc to 2000cc':
+                engine_size = 4
+            elif engine_size == '2001cc to 3000cc':
+                engine_size = 5
+            else:
+                engine_size = 6
+        elif int(petrol_type) == 2:
+            if engine_size == '1500cc and below':
+                engine_size = 1
+            elif engine_size == '1501cc to 2000cc':
+                engine_size = 2
+            elif engine_size == '2001cc to 2500cc':
+                engine_size = 3
+            elif engine_size == '2501cc to 3000cc':
+                engine_size = 4
+            else:
+                engine_size = 5
         else:
-            print("What is the cost of the vehicle (Including insurance and freight) in USD?")
-            cif = int(input())
-            print(functions.get_total_duty_fyoo(cif, petro_type, 0, exchange_rate))
-
-    #Vehicle age of Under Four Years     
+            engine_size = 0
     else:
-
-        #Getting petro type
-        print("Is the vehicle using Gasoline or Disel or Electric?")
-        print("Press ""1"" for Gasoline ")
-        print("Press ""2"" for Disel or Semi-Disel")
-        print("Press ""3"" for Electric")
-        petro_type = int(input())
-
-        #Gasoline Vehicle
-        if petro_type == 1:
-            print("How many Cubic Centimeters (CC) is the vehicle?")
-            print("Press 1 for 1000cc and below")
-            print("Press 2 for 1001cc to 1500cc")
-            print("Press 3 for 1501cc to 1800cc")
-            print("Press 4 for 1801cc to 2000cc")
-            print("Press 5 for 2001cc to 3000cc")
-            print("Press 6 for 3001cc and above")
-            gasoline_engine_cc = int(input())
-
-            print("What is the cost of the vehicle (Including insurance and freight) in USD?")
-            cif = int(input())
-            print(functions.get_total_duty_ufy(cif, petro_type, gasoline_engine_cc, exchange_rate))
-
-        #Disel/Semi-Disel Vehicle
-        elif petro_type == 2:
-            print("How many Cubic Centimeters (CC) is the vehicle?")
-            print("Press 1 for 1500cc and below")
-            print("Press 2 for 1501cc to 1800cc")
-            print("Press 3 for 2000cc to 2500cc")
-            print("Press 4 for above 2500cc")
-            disel_engine_cc = int(input())
-
-            print("What is the cost of the vehicle (Including insurance and freight) in USD?")
-            cif = int(input())
-            print(functions.get_total_duty_ufy(cif, petro_type, disel_engine_cc, exchange_rate))
-
-        #Eelectric Vehicle
+        if int(petrol_type) == 1:
+            if engine_size == '1000cc and below':
+                engine_size = 1
+            elif engine_size == '1001cc to 1500cc':
+                engine_size = 2
+            elif engine_size == '1501cc to 1800cc':
+                engine_size = 3
+            elif engine_size == '1801cc to 2000cc':
+                engine_size = 4
+            elif engine_size == '2001cc to 3000cc':
+                engine_size = 5
+            else:
+                engine_size = 6
+        elif int(petrol_type) == 2:
+            if engine_size == '1500cc and below':
+                engine_size = 1
+            elif engine_size == '1501cc to 1800cc':
+                engine_size = 2
+            elif engine_size == '2000cc to 2500cc':
+                engine_size = 3
+            else:
+                engine_size = 4
         else:
-            print("What is the cost of the vehicle (Including insurance and freight) in USD?")
+            engine_size = 0
 
-            cif = int(input())
-            print(functions.get_total_duty_ufy(cif, petro_type, 0, exchange_rate))
+    if int(vehicle_age) == 1:
+        result_string = functions.get_total_duty_fyoo(int(vehicle_cost), int(petrol_type), int(engine_size), int(exchange_rate))
+    else:
+        result_string = functions.get_total_duty_ufy(int(vehicle_cost), int(petrol_type), int(engine_size), int(exchange_rate))
 
-#Rounding of Values
-# cif = round(cif,2)
-# duty = round(duty,2)
-# excise_tax = round(excise_tax,2)
-# vat = round(vat,2)
-# total_duty = round(total_duty,2)
-# total_cost = round(total_cost,2)
+    result_text.delete(1.0, END)  # Clear existing content
+    result_text.insert(END, result_string)
+
+def update_options(event):
+    selected_category = list_fuel_type.get()
+    vehicle_age = dict_vehicle_age[input_vehicle_age.get()]
     
-#Summary of Costs
-# print("")
-# print("-----------------------------------------------------------------")
-# print("Cost of Car (Including Insurance and Frieght): $" + str(cif))
-# print("Duty: $" + str(duty))
-# print("Excise: $" + str(excise_tax))
-# print("Value Added Tax (VAT): $" + str(vat))
-# print("Total Tax Payable: $" + str(total_duty))
-# print("Total Vehicle Cost $" + str(total_cost))
-# print("-----------------------------------------------------------------")
+    # Clear current options in the second ComboBox
+    input_engine_size['values'] = []
+
+    # Update options in the second ComboBox based on the selected category
+
+    if int(vehicle_age) == 1:
+        if selected_category == 'Gasoline':
+            input_engine_size['values'] = ('1000cc and below', '1001cc to 1500cc', '1501cc to 1800cc','1801cc to 2000cc','2001cc to 3000cc','3001cc and above')
+        elif selected_category == 'Diesel':
+            input_engine_size['values'] = ('1500cc and below', '1501cc to 2000cc', '2001cc to 2500cc', '2501cc to 3000cc', '3001cc and above')
+        elif selected_category == 'Electric':
+            input_engine_size['values'] = ('None')
+    else:
+        if selected_category == 'Gasoline':
+            input_engine_size['values'] = ('1000cc and below', '1001cc to 1500cc', '1501cc to 1800cc','1801cc to 2000cc','2001cc to 3000cc','3001cc and above')
+        elif selected_category == 'Diesel':
+            input_engine_size['values'] = ('1500cc and below', '1501cc to 1800cc', '2000cc to 2500cc', '2500cc and above')
+        elif selected_category == 'Electric':
+            input_engine_size['values'] = ('None')
+
+def create_gui():
+    root = Tk()
+
+    root.title("Vehicle Import Calculator")
+    root.geometry('500x500')
+
+    label_vehicle_cost = Label(root, text="What is the cost of the vehicle (Including insurance and freight) in USD?")
+    label_vehicle_cost.grid(row=0, column=0, sticky='w')
+
+    input_vehicle_cost = Entry(root)
+    input_vehicle_cost.grid(row=1, column=0, sticky='w')
+
+    label_exchange_rate = Label(root, text="Please enter the exchange rate you are using (GYD to USD)")
+    label_exchange_rate.grid(row=2, column=0, sticky='w')
+
+    input_exchange_rate = Entry(root)
+    input_exchange_rate.grid(row=3, column=0, sticky='w')
+
+    label_vehicle_age = Label(root, text="What is the Vehicle Age?")
+    label_vehicle_age.grid(row=4, column=0, sticky='w')
+
+    list_vehicle_age = StringVar()
+    input_vehicle_age = ttk.Combobox(root, textvariable=list_vehicle_age, values=('Four Years and Older', 'Four Years Old'))
+    input_vehicle_age.grid(row=5, column=0, sticky='w')
+    dict_vehicle_age = {'Four Years and Older' : 1, "Four Years Old" :  2}
+
+    label_fuel_type = Label(root, text="Fuel Type")
+    label_fuel_type.grid(row=6, column=0, sticky='w')
+
+    list_fuel_type = StringVar()
+    input_fuel_type = ttk.Combobox(root, textvariable=list_fuel_type)
+    input_fuel_type['values'] = ('Gasoline', 'Diesel', 'Electric')
+    input_fuel_type.grid(row=7, column=0, sticky='w')
+    dict_fuel_type = {'Gasoline': 1, 'Diesel': 2, 'Electric': 3}
+
+
+    list_engine_size = StringVar()
+    label_engine_size = Label(root, text="How many Cubic Centimeters (CC) is the vehicle?")
+    label_engine_size.grid(row=8, column=0, sticky='w')
+    input_engine_size = ttk.Combobox(root, textvariable=list_engine_size)
+    input_engine_size.grid(row=9, column=0, sticky='w')
+
+    input_fuel_type.bind("<<ComboboxSelected>>", update_options)
+
+
+    button_calculate = Button(root, text="Calculate Costs", command=calculate_totals)
+    button_calculate.grid(row=10, column=0, sticky='w')
+
+    result_text = Text(root, wrap=WORD, height=15, width=80)
+    result_text.grid(row=11, column=0, sticky='w')
+
+
+    root.mainloop()
+
+if __name__ == "__main__":
+    create_gui()
