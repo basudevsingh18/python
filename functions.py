@@ -2,13 +2,10 @@ def convert_to_gyd(in_currency: str, in_exchange_rate: int, in_amount: float) ->
     
     return_val = 0
 
-    try:
-        if in_currency.upper() == "USD":
-            return_val = in_amount * in_exchange_rate
-        else :
-            return_val = -1
-    except:
-        print("Error in exchange rate conversion")
+    if in_currency.upper() == "USD":
+        return_val = in_amount * in_exchange_rate
+    else :
+        return_val = -1
     
     return round(return_val,2)
 
@@ -20,255 +17,224 @@ def get_total_duty_fyoo(in_cif: int,in_petrol_type: int, in_cc_no: int, in_excha
 
     #Gasloine
     if in_petrol_type == 1:
-        try:
-            #1000cc and below
-            if in_cc_no == 1:
-                try:
-                    duty = 0
-                    excise_tax = 800000
-                    vat = 0
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+        #1000cc and below
+        if in_cc_no == 1:
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+            duty = 0
+            excise_tax = 800000
+            vat = 0
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 1000cc and below."
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
 
-            #1001cc to 1500cc
-            elif in_cc_no == 2:
-                try:
-                    duty = 0
-                    excise_tax = 800000
-                    vat = 0
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+        #1001cc to 1500cc
+        elif in_cc_no == 2:
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 1001cc to 1500cc."
+            duty = 0
+            excise_tax = 800000
+            vat = 0
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-            #1501cc to 1800cc
-            elif in_cc_no == 3:
-                try:
-                    duty = 0
-                    excise_tax = round((((cif + (6000 * in_exchange_rate)) * 0.3) + (6000 * in_exchange_rate)),2)
-                    vat = 0
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 1501cc to 1800cc."
+        #1501cc to 1800cc
+        elif in_cc_no == 3:
 
-            #1801cc to 2000cc
-            elif in_cc_no == 4:
-                try:
-                    duty = 0
-                    excise_tax = round((((cif + (6500 * in_exchange_rate)) * 0.3) + (6500 * in_exchange_rate)),2)
-                    vat = 0
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+            duty = 0
+            excise_tax = round((((cif + (6000 * in_exchange_rate)) * 0.3) + (6000 * in_exchange_rate)),2)
+            vat = 0
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of #1801cc to 2000cc."
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
-            #2001cc to 3000cc
-            elif in_cc_no == 5:
-                try:
-                    duty = 0
-                    excise_tax = round((((cif + (13500 * in_exchange_rate)) * 0.7) + (13500 * in_exchange_rate)),2)
-                    vat = 0
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+        #1801cc to 2000cc
+        elif in_cc_no == 4:
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+            duty = 0
+            excise_tax = round((((cif + (6500 * in_exchange_rate)) * 0.3) + (6500 * in_exchange_rate)),2)
+            vat = 0
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 2001cc to 3000cc."
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
 
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
-            #3001cc and above
-            else:
-                try:
-                    duty = 0
-                    excise_tax = round((((cif + (6000 * in_exchange_rate)) * 1) + (6000 * in_exchange_rate)),2)
-                    vat = 0
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+        #2001cc to 3000cc
+        elif in_cc_no == 5:
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+            duty = 0
+            excise_tax = round((((cif + (13500 * in_exchange_rate)) * 0.7) + (13500 * in_exchange_rate)),2)
+            vat = 0
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 3001cc and above."
-        except:
-            print("Error: Unable to calculate import tax for gasoline vehicles.")
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
+
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
+
+        #3001cc and above
+        else:
+
+            duty = 0
+            excise_tax = round((((cif + (6000 * in_exchange_rate)) * 1) + (6000 * in_exchange_rate)),2)
+            vat = 0
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
+
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
+
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
     #Disel/Semi Disel Vehicle
     elif in_petrol_type == 2:
-        try:
-            #1500cc and below
-            if in_cc_no == 1:
-                try:
-                    duty = 0
-                    excise_tax = 800000
-                    vat = 0
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+        #1500cc and below
+        if in_cc_no == 1:
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+            duty = 0
+            excise_tax = 800000
+            vat = 0
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 1500cc and below."
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
 
-            #1501cc to 2000cc
-            elif in_cc_no == 2:
-                try:
-                    duty = 0
-                    excise_tax = round((((cif + (15400 * in_exchange_rate)) * 0.3) + (15400 * in_exchange_rate)),2)
-                    vat = 0
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+        #1501cc to 2000cc
+        elif in_cc_no == 2:
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 1501cc to 2000cc."
+            duty = 0
+            excise_tax = round((((cif + (15400 * in_exchange_rate)) * 0.3) + (15400 * in_exchange_rate)),2)
+            vat = 0
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-            #2001cc to 2500cc
-            elif in_cc_no == 3:
-                try:
-                    duty = 0
-                    excise_tax = round((((cif + (15400 * in_exchange_rate)) * 0.7) + (15400 * in_exchange_rate)),2)
-                    vat = 0
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 2001cc to 2500cc."
+        #2001cc to 2500cc
+        elif in_cc_no == 3:
 
-            #2501cc to 3000cc
-            elif in_cc_no == 4:
-                try:
-                    duty = 0
-                    excise_tax = round((((cif + (15500 * in_exchange_rate)) * 0.7) + (15500 * in_exchange_rate)),2)
-                    vat = 0
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+            duty = 0
+            excise_tax = round((((cif + (15400 * in_exchange_rate)) * 0.7) + (15400 * in_exchange_rate)),2)
+            vat = 0
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 2501cc to 3000cc."
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
-            #3001cc and above
-            else:
-                try:
-                    duty = 0
-                    excise_tax = round((((cif + (17200 * in_exchange_rate)) * 1) + (17200 * in_exchange_rate)),2)
-                    vat = 0
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+        #2501cc to 3000cc
+        elif in_cc_no == 4:
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+            duty = 0
+            excise_tax = round((((cif + (15500 * in_exchange_rate)) * 0.7) + (15500 * in_exchange_rate)),2)
+            vat = 0
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 3001cc and above."
-        except:
-            print("Error: Unable to calculate import tax for diesel vehicles.")
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
+
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
+
+        #3001cc and above
+        else:
+
+            duty = 0
+            excise_tax = round((((cif + (17200 * in_exchange_rate)) * 1) + (17200 * in_exchange_rate)),2)
+            vat = 0
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
+
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
+
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
     #Electric Vehicle
     else:
-        try:
-            if in_cc_no == 0:
-                duty = 0
-                excise_tax = 800000
-                vat = 0
-                total_duty = round((duty + excise_tax + vat),2)
-                total_cost = round((cif + total_duty),2)
+        if in_cc_no == 0:
+            duty = 0
+            excise_tax = 800000
+            vat = 0
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-                cif = "${:,.2f}".format(cif)
-                duty = "${:,.2f}".format(duty)
-                excise_tax = "${:,.2f}".format(excise_tax)
-                vat = "${:,.2f}".format(vat)
-                total_duty = "${:,.2f}".format(total_duty)
-                total_cost = "${:,.2f}".format(total_cost)
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
 
-                result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-        except:
-            print("Error: Unable to calculate import tax for electric vehicles.")
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
+
 
     return result_string
 
@@ -280,238 +246,206 @@ def get_total_duty_ufy(in_cif: int,in_petrol_type: int, in_cc_no: int, in_exchan
 
     #Gasloine
     if in_petrol_type == 1:
-        try:
-            #1000cc and below
-            if in_cc_no == 1:
-                try:
-                    duty = round((0.35 * cif),2)
-                    excise_tax = 0
-                    vat = round((0.14 * (cif + duty + excise_tax)),2)
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+        #1000cc and below
+        if in_cc_no == 1:
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+            duty = round((0.35 * cif),2)
+            excise_tax = 0
+            vat = round((0.14 * (cif + duty + excise_tax)),2)
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 1000cc and below."
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
 
-            #1001cc to 1500cc
-            elif in_cc_no == 2:
-                try:
-                    duty = round((0.35 * cif),2)
-                    excise_tax = 0
-                    vat = round((0.14 * (cif + duty + excise_tax)),2)
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+        #1001cc to 1500cc
+        elif in_cc_no == 2:
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 1001cc to 1500cc."
+            duty = round((0.35 * cif),2)
+            excise_tax = 0
+            vat = round((0.14 * (cif + duty + excise_tax)),2)
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-            #1501cc to 1800cc
-            elif in_cc_no == 3:
-                try:
-                    duty = round((0.45 * cif),2)
-                    excise_tax = round((0.1 * (cif + duty)),2)
-                    vat = round((0.14 * (cif + duty + excise_tax)),2)
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 1501cc to 1800cc."
-                    
-            #1801cc to 2000cc
-            elif in_cc_no == 4:
-                try:
-                    duty = round((0.45 * cif),2)
-                    excise_tax = round((0.1 * (cif + duty)),2)
-                    vat = round((0.14 * (cif + duty + excise_tax)),2)
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+        #1501cc to 1800cc
+        elif in_cc_no == 3:
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+            duty = round((0.45 * cif),2)
+            excise_tax = round((0.1 * (cif + duty)),2)
+            vat = round((0.14 * (cif + duty + excise_tax)),2)
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 1801cc to 2000cc."
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
 
-            #2001cc to 3000cc
-            elif in_cc_no == 5:
-                try:
-                    duty = round((0.45 * cif),2)
-                    excise_tax = round((1.1 * (cif + duty)),2)
-                    vat = round((0.14 * (cif + duty + excise_tax)),2)
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+        #1801cc to 2000cc
+        elif in_cc_no == 4:
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 2001cc to 3000cc."
+            duty = round((0.45 * cif),2)
+            excise_tax = round((0.1 * (cif + duty)),2)
+            vat = round((0.14 * (cif + duty + excise_tax)),2)
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-            #3001cc and above
-            else:
-                try:
-                    duty = round((0.45 * cif),2)
-                    excise_tax = round((1.4 * (cif + duty)),2)
-                    vat = round((0.14 * (cif + duty + excise_tax)),2)
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 3001cc and above."
-        except:
-            print("Error: Unable to calculate import tax for gasoline vehicles.")
+        #2001cc to 3000cc
+        elif in_cc_no == 5:
+
+            duty = round((0.45 * cif),2)
+            excise_tax = round((1.1 * (cif + duty)),2)
+            vat = round((0.14 * (cif + duty + excise_tax)),2)
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
+
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
+
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
+
+        #3001cc and above
+        else:
+
+            duty = round((0.45 * cif),2)
+            excise_tax = round((1.4 * (cif + duty)),2)
+            vat = round((0.14 * (cif + duty + excise_tax)),2)
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
+
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
+
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
     #Disel/Semi Disel Vehicle
     elif in_petrol_type == 2:
-        try:
-            #1500cc and below
-            if in_cc_no == 1:
-                try:
-                    duty = round((0.35 * cif),2)
-                    excise_tax = 0
-                    vat = round((0.14 * (cif + duty + excise_tax)),2)
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+        #1500cc and below
+        if in_cc_no == 1:
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+            duty = round((0.35 * cif),2)
+            excise_tax = 0
+            vat = round((0.14 * (cif + duty + excise_tax)),2)
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 1500cc and below."
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
 
-            #1501cc to 2000cc
-            elif in_cc_no == 2:
-                try:
-                    duty = round((0.45 * cif),2)
-                    excise_tax = round((0.1 * (cif + duty)),2)
-                    vat = round((0.14 * (cif + duty + excise_tax)),2)
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+        #1501cc to 2000cc
+        elif in_cc_no == 2:
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 1501cc to 2000cc."
+            duty = round((0.45 * cif),2)
+            excise_tax = round((0.1 * (cif + duty)),2)
+            vat = round((0.14 * (cif + duty + excise_tax)),2)
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-            #2001cc to 2500cc
-            elif in_cc_no == 3:
-                try:
-                    duty = round((0.45 * cif),2)
-                    excise_tax = round((1.1 * (cif + duty)),2)
-                    vat = round((0.14 * (cif + duty + excise_tax)),2)
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 2001cc to 2500cc."
+        #2001cc to 2500cc
+        elif in_cc_no == 3:
 
-            #3001cc and above
-            else:
-                try:
-                    duty = round((0.45 * cif),2)
-                    excise_tax = round((1.1 * (cif + duty)),2)
-                    vat = round((0.14 * (cif + duty + excise_tax)),2)
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+            duty = round((0.45 * cif),2)
+            excise_tax = round((1.1 * (cif + duty)),2)
+            vat = round((0.14 * (cif + duty + excise_tax)),2)
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
 
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for vehicle of 3001cc and above."
-        except:
-            print("Error: Unable to calculate import tax for diesel vehicles.")
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
+
+        #3001cc and above
+        else:
+
+            duty = round((0.45 * cif),2)
+            excise_tax = round((1.1 * (cif + duty)),2)
+            vat = round((0.14 * (cif + duty + excise_tax)),2)
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
+
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
+
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
 
     #Electric Vehicle
     else:
-        try:
-            if in_cc_no == 0:
-                try:
-                    duty = 0
-                    excise_tax = 0
-                    vat = 0
-                    total_duty = round((duty + excise_tax + vat),2)
-                    total_cost = round((cif + total_duty),2)
+        if in_cc_no == 0:
+            duty = 0
+            excise_tax = 0
+            vat = 0
+            total_duty = round((duty + excise_tax + vat),2)
+            total_cost = round((cif + total_duty),2)
 
-                    cif = "${:,.2f}".format(cif)
-                    duty = "${:,.2f}".format(duty)
-                    excise_tax = "${:,.2f}".format(excise_tax)
-                    vat = "${:,.2f}".format(vat)
-                    total_duty = "${:,.2f}".format(total_duty)
-                    total_cost = "${:,.2f}".format(total_cost)
-                    
-                    result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
-                except:
-                    result_string = "Error: Unable to calculate import tax for electric vehicles."
-        except:
-            print("Error: Unable to calculate import tax for electric vehicles.")
+            cif = "${:,.2f}".format(cif)
+            duty = "${:,.2f}".format(duty)
+            excise_tax = "${:,.2f}".format(excise_tax)
+            vat = "${:,.2f}".format(vat)
+            total_duty = "${:,.2f}".format(total_duty)
+            total_cost = "${:,.2f}".format(total_cost)
             
+            result_string = f"-----------------------------------------------------------------\nCost of Car (Including Insurance and Frieght): {cif}\nDuty: {duty}\nExcise: {excise_tax}\nValue Added Tax (VAT): {vat}\nTotal Tax Payable: {total_duty}\n-----------------------------------------------------------------\nTotal Vehicle Cost {total_cost}\n-----------------------------------------------------------------"
+    
     return result_string
 
 def calculate_totals():
