@@ -165,7 +165,7 @@ def create_gui():
 
     #Vehicle Cost Label
     label_vehicle_cost = customtkinter.CTkLabel(root, text="What is the cost of the vehicle (Including insurance and freight) in USD?")
-    label_vehicle_cost.grid(row=0, column=0, padx=20, pady=20, sticky="ew")
+    label_vehicle_cost.grid(row=0, column=0, padx=20, pady=20, sticky="w")
 
     #Vehicle Cost Input 
     input_vehicle_cost = customtkinter.CTkEntry(root, placeholder_text="Enter CIF here...")
@@ -173,7 +173,7 @@ def create_gui():
 
     #Exchange Rate Label
     label_exchange_rate = customtkinter.CTkLabel(root, text="Please enter the exchange rate you are using (GYD to USD)")
-    label_exchange_rate.grid(row=1, column=0, padx=20, pady=20, sticky='ew')
+    label_exchange_rate.grid(row=1, column=0, padx=20, pady=20, sticky='w')
 
     #Exchange Rate Input
     input_exchange_rate = customtkinter.CTkEntry(root, placeholder_text="Enter exchange rate here...")
@@ -181,7 +181,7 @@ def create_gui():
 
     #Vehicle Age Label
     label_vehicle_age = customtkinter.CTkLabel(root, text="What is the Vehicle Age?")
-    label_vehicle_age.grid(row=2, column=0, padx=20, pady=20, sticky='ew')
+    label_vehicle_age.grid(row=2, column=0, padx=20, pady=20, sticky='w')
 
     #Vehicle Age Input
     list_vehicle_age = customtkinter.StringVar(value='--Select an option--')
@@ -192,7 +192,7 @@ def create_gui():
 
     #Vehicle Fuel Type Label
     label_fuel_type = customtkinter.CTkLabel(root, text="What type of fuel/energy does the vehicle use?")
-    label_fuel_type.grid(row=3, column=0, padx=20, pady=20, sticky='ew')
+    label_fuel_type.grid(row=3, column=0, padx=20, pady=20, sticky='w')
 
     #Vehicle Fuel Type Input
     list_fuel_type = StringVar(value='--Select an option--')
@@ -204,7 +204,7 @@ def create_gui():
 
     #Vehicle Engine Size Label
     label_engine_size = customtkinter.CTkLabel(root, text="How many Cubic Centimeters (CC) is the vehicle?")
-    label_engine_size.grid(row=4, column=0, padx=20, pady=20, sticky='ew')
+    label_engine_size.grid(row=4, column=0, padx=20, pady=20, sticky='w')
 
     #Vehicle Engine Size Input
     list_engine_size = StringVar(value='--Select an option--')
@@ -220,8 +220,10 @@ def create_gui():
     button_theme = customtkinter.CTkButton(root, text="Change Theme", command=toggle_theme)
     button_theme.grid(row=5, column=3, columnspan=2, padx=20, pady=20, sticky='ew')
 
+    label_result_text = customtkinter.CTkLabel(root, text="Breakdown to Results")
+    label_result_text.grid(row=6, column=0, columnspan=5, padx=20, pady=0, sticky='w')
     result_text = Text(root, wrap=WORD, height=15, width=80)
-    result_text.grid(row=11, column=0, columnspan=5, padx =20, pady=20, sticky='ew')
+    result_text.grid(row=7, column=0, columnspan=5, padx =20, pady=0, sticky='ew')
 
 
     root.mainloop()
