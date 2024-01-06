@@ -448,72 +448,72 @@ def get_total_duty_ufy(in_cif: int,in_petrol_type: int, in_cc_no: int, in_exchan
     
     return result_string
 
-def calculate_totals():
-    vehicle_cost = input_vehicle_cost.get()
-    petrol_type = dict_fuel_type[input_fuel_type.get()]
-    engine_size = input_engine_size.get()
-    exchange_rate = input_exchange_rate.get()
-    vehicle_age = dict_vehicle_age[input_vehicle_age.get()]
+# def calculate_totals():
+#     vehicle_cost = input_vehicle_cost.get()
+#     petrol_type = dict_fuel_type[input_fuel_type.get()]
+#     engine_size = input_engine_size.get()
+#     exchange_rate = input_exchange_rate.get()
+#     vehicle_age = dict_vehicle_age[input_vehicle_age.get()]
 
-    if int(vehicle_age) == 1:
-        if int(petrol_type) == 1:
-            if engine_size == '1000cc and below':
-                engine_size = 1
-            elif engine_size == '1001cc to 1500cc':
-                engine_size = 2
-            elif engine_size == '1501cc to 1800cc':
-                engine_size = 3
-            elif engine_size == '1801cc to 2000cc':
-                engine_size = 4
-            elif engine_size == '2001cc to 3000cc':
-                engine_size = 5
-            else:
-                engine_size = 6
-        elif int(petrol_type) == 2:
-            if engine_size == '1500cc and below':
-                engine_size = 1
-            elif engine_size == '1501cc to 2000cc':
-                engine_size = 2
-            elif engine_size == '2001cc to 2500cc':
-                engine_size = 3
-            elif engine_size == '2501cc to 3000cc':
-                engine_size = 4
-            else:
-                engine_size = 5
-        else:
-            engine_size = 0
-    else:
-        if int(petrol_type) == 1:
-            if engine_size == '1000cc and below':
-                engine_size = 1
-            elif engine_size == '1001cc to 1500cc':
-                engine_size = 2
-            elif engine_size == '1501cc to 1800cc':
-                engine_size = 3
-            elif engine_size == '1801cc to 2000cc':
-                engine_size = 4
-            elif engine_size == '2001cc to 3000cc':
-                engine_size = 5
-            else:
-                engine_size = 6
-        elif int(petrol_type) == 2:
-            if engine_size == '1500cc and below':
-                engine_size = 1
-            elif engine_size == '1501cc to 1800cc':
-                engine_size = 2
-            elif engine_size == '2000cc to 2500cc':
-                engine_size = 3
-            else:
-                engine_size = 4
-        else:
-            engine_size = 0
+#     if int(vehicle_age) == 1:
+#         if int(petrol_type) == 1:
+#             if engine_size == '1000cc and below':
+#                 engine_size = 1
+#             elif engine_size == '1001cc to 1500cc':
+#                 engine_size = 2
+#             elif engine_size == '1501cc to 1800cc':
+#                 engine_size = 3
+#             elif engine_size == '1801cc to 2000cc':
+#                 engine_size = 4
+#             elif engine_size == '2001cc to 3000cc':
+#                 engine_size = 5
+#             else:
+#                 engine_size = 6
+#         elif int(petrol_type) == 2:
+#             if engine_size == '1500cc and below':
+#                 engine_size = 1
+#             elif engine_size == '1501cc to 2000cc':
+#                 engine_size = 2
+#             elif engine_size == '2001cc to 2500cc':
+#                 engine_size = 3
+#             elif engine_size == '2501cc to 3000cc':
+#                 engine_size = 4
+#             else:
+#                 engine_size = 5
+#         else:
+#             engine_size = 0
+#     else:
+#         if int(petrol_type) == 1:
+#             if engine_size == '1000cc and below':
+#                 engine_size = 1
+#             elif engine_size == '1001cc to 1500cc':
+#                 engine_size = 2
+#             elif engine_size == '1501cc to 1800cc':
+#                 engine_size = 3
+#             elif engine_size == '1801cc to 2000cc':
+#                 engine_size = 4
+#             elif engine_size == '2001cc to 3000cc':
+#                 engine_size = 5
+#             else:
+#                 engine_size = 6
+#         elif int(petrol_type) == 2:
+#             if engine_size == '1500cc and below':
+#                 engine_size = 1
+#             elif engine_size == '1501cc to 1800cc':
+#                 engine_size = 2
+#             elif engine_size == '2000cc to 2500cc':
+#                 engine_size = 3
+#             else:
+#                 engine_size = 4
+#         else:
+#             engine_size = 0
 
-    if int(vehicle_age) == 1:
-        result_string = get_total_duty_fyoo(int(vehicle_cost), int(petrol_type), int(engine_size), int(exchange_rate))
-    else:
-        result_string = get_total_duty_ufy(int(vehicle_cost), int(petrol_type), int(engine_size), int(exchange_rate))
+#     if int(vehicle_age) == 1:
+#         result_string = get_total_duty_fyoo(int(vehicle_cost), int(petrol_type), int(engine_size), int(exchange_rate))
+#     else:
+#         result_string = get_total_duty_ufy(int(vehicle_cost), int(petrol_type), int(engine_size), int(exchange_rate))
 
-    result_text.delete(1.0, END)  # Clear existing content
-    result_text.insert(END, result_string)
+#     result_text.delete(1.0, END)  # Clear existing content
+#     result_text.insert(END, result_string)
 
 

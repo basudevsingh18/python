@@ -3,6 +3,16 @@ from tkinter import *
 from tkinter import ttk 
 import functions
 
+list_fuel_type = None
+input_vehicle_age = None
+dict_vehicle_age = None
+dict_fuel_type = None
+input_engine_size = None
+input_vehicle_cost = None
+input_fuel_type = None
+input_exchange_rate = None
+result_text = None
+
 def calculate_totals():
     vehicle_cost = input_vehicle_cost.get()
     petrol_type = dict_fuel_type[input_fuel_type.get()]
@@ -96,6 +106,8 @@ def update_options(event):
             input_engine_size['values'] = ('None')
 
 def create_gui():
+    global list_fuel_type, input_vehicle_age, dict_vehicle_age, dict_fuel_type, input_engine_size, input_vehicle_cost, input_fuel_type, input_exchange_rate, result_text
+    
     root = Tk()
 
     root.title("Vehicle Import Calculator")
@@ -150,4 +162,4 @@ def create_gui():
     root.mainloop()
 
 if __name__ == "__main__":
-    gui.create_gui()
+    create_gui()
