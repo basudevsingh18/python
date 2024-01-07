@@ -117,42 +117,24 @@ def toggle_theme():
 #         elif selected_category == 'Electric':
 #             input_engine_size['values'] = ('None')
 
-# def update_options(event):
+def update_options(*args):
+    selected_category = list_fuel_type.get()
+    vehicle_age = dict_vehicle_age[input_vehicle_age.get()]
 
-#     selected_category = list_fuel_type.get()
-#     vehicle_age = dict_vehicle_age[input_vehicle_age.get()]
-    
-#     # Clear current options in the second ComboBox
-#     # input_engine_size['values'] = []
-#     input_engine_size.destroy()
-
-#     # Update options in the second ComboBox based on the selected category
-#     sub_values = get_sub_values(vehicle_age, selected_category)
-#     list_engine_size.set(sub_values[0])
-
-#     input_engine_size = customtkinter.CTkOptionMenu(root, values=sub_values, variable=option_sub_values_var)
-
-#     # input_engine_size['values'] = sub_values
-
-# def get_sub_values(vehicle_age, fuel_type):
-
-#     vehicle_age = dict_vehicle_age[input_vehicle_age.get()]
-
-#     if int(vehicle_age) == 1:
-#         engine_sizes = {
-#             'Gasoline' : ['1000cc and below', '1001cc to 1500cc', '1501cc to 1800cc','1801cc to 2000cc','2001cc to 3000cc','3001cc and above'],
-#             'Diesel' : ['1500cc and below', '1501cc to 2000cc', '2001cc to 2500cc', '2501cc to 3000cc', '3001cc and above'],
-#             'Electric' : ['None']
-#         }
-#     else:
-#         engine_sizes = {
-#             'Gasoline' : ['1000cc and below', '1001cc to 1500cc', '1501cc to 1800cc','1801cc to 2000cc','2001cc to 3000cc','3001cc and above'],
-#             'Diesel' : ['1500cc and below', '1501cc to 1800cc', '2000cc to 2500cc', '2500cc and above'],
-#             'Electric' : ['None']
-#         }
-    
-#     return engine_sizes.get(fuel_type, [])
-
+    if int(vehicle_age) == 1:
+        if selected_category == 'Gasoline':
+            input_engine_size.configure (values=['1000cc and below', '1001cc to 1500cc', '1501cc to 1800cc','1801cc to 2000cc','2001cc to 3000cc','3001cc and above'])
+        elif selected_category == 'Diesel':
+            input_engine_size.configure (values=['1500cc and below', '1501cc to 2000cc', '2001cc to 2500cc', '2501cc to 3000cc', '3001cc and above'])
+        elif selected_category == 'Electric':
+            input_engine_size.configure (values=['None'])
+    else:
+        if selected_category == 'Gasoline':
+            input_engine_size.configure (values=['1000cc and below', '1001cc to 1500cc', '1501cc to 1800cc','1801cc to 2000cc','2001cc to 3000cc','3001cc and above'])
+        elif selected_category == 'Diesel':
+            input_engine_size.configure (values=['1500cc and below', '1501cc to 1800cc', '2000cc to 2500cc', '2500cc and above'])
+        elif selected_category == 'Electric':
+            input_engine_size.configure (values=['None'])
 
 
 def create_gui():
@@ -195,10 +177,9 @@ def create_gui():
     label_fuel_type.grid(row=3, column=0, padx=20, pady=20, sticky='w')
 
     #Vehicle Fuel Type Input
-    list_fuel_type = StringVar(value='--Select an option--')
-    # input_fuel_type = ttk.Combobox(root, textvariable=list_fuel_type)
-    input_fuel_type = customtkinter.CTkOptionMenu(root, values=['Gasoline', 'Diesel', 'Electric'], variable=list_fuel_type)
-    # input_fuel_type['values'] = ('Gasoline', 'Diesel', 'Electric')
+    list_fuel_type = customtkinter.StringVar(root)
+    list_fuel_type.set("Select fuel type") #Nice to have
+    input_fuel_type = customtkinter.CTkOptionMenu(master=root, values=['Gasoline', 'Diesel', 'Electric'], variable=list_fuel_type, command=update_options)
     input_fuel_type.grid(row=3, column=1, columnspan=5, padx=20, pady=20, sticky='ew')
     dict_fuel_type = {'Gasoline': 1, 'Diesel': 2, 'Electric': 3}
 
@@ -207,12 +188,9 @@ def create_gui():
     label_engine_size.grid(row=4, column=0, padx=20, pady=20, sticky='w')
 
     #Vehicle Engine Size Input
-    list_engine_size = StringVar(value='--Select an option--')
-    input_engine_size = customtkinter.CTkOptionMenu(root, values=['1000cc and below', '1001cc to 1500cc', '1501cc to 1800cc','1801cc to 2000cc','2001cc to 3000cc','3001cc and above'], variable=list_engine_size)
+    list_engine_size = customtkinter.StringVar(root)
+    input_engine_size = customtkinter.CTkOptionMenu(master=root, values=[], variable=list_engine_size)
     input_engine_size.grid(row=4, column=1, columnspan=5, padx=20, pady=20, sticky='ew')
-
-    # input_fuel_type.bind("<<ComboboxSelected>>", update_options)
-
 
     button_calculate = customtkinter.CTkButton(root, text="Calculate Costs", command=calculate_totals)
     button_calculate.grid(row=5, column=1, columnspan=2, padx=20, pady=20, sticky='ew')
