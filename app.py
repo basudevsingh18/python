@@ -91,32 +91,6 @@ def toggle_theme():
     else:
         customtkinter.set_appearance_mode("Light")
 
-# def update_options(event):
-#     print("Step 1")
-#     selected_category = list_fuel_type.get()
-#     vehicle_age = dict_vehicle_age[input_vehicle_age.get()]
-    
-#     # Clear current options in the second ComboBox
-#     # input_engine_size['values'] = []
-#     input_engine_size.destroy()
-
-#     # Update options in the second ComboBox based on the selected category
-
-#     if int(vehicle_age) == 1:
-#         if selected_category == 'Gasoline':
-#             input_engine_size['values'] = ('1000cc and below', '1001cc to 1500cc', '1501cc to 1800cc','1801cc to 2000cc','2001cc to 3000cc','3001cc and above')
-#         elif selected_category == 'Diesel':
-#             input_engine_size['values'] = ('1500cc and below', '1501cc to 2000cc', '2001cc to 2500cc', '2501cc to 3000cc', '3001cc and above')
-#         elif selected_category == 'Electric':
-#             input_engine_size['values'] = ('None')
-#     else:
-#         if selected_category == 'Gasoline':
-#             input_engine_size['values'] = ('1000cc and below', '1001cc to 1500cc', '1501cc to 1800cc','1801cc to 2000cc','2001cc to 3000cc','3001cc and above')
-#         elif selected_category == 'Diesel':
-#             input_engine_size['values'] = ('1500cc and below', '1501cc to 1800cc', '2000cc to 2500cc', '2500cc and above')
-#         elif selected_category == 'Electric':
-#             input_engine_size['values'] = ('None')
-
 def update_options(*args):
     selected_category = list_fuel_type.get()
     vehicle_age = dict_vehicle_age[input_vehicle_age.get()]
@@ -135,7 +109,6 @@ def update_options(*args):
             input_engine_size.configure (values=['1500cc and below', '1501cc to 1800cc', '2000cc to 2500cc', '2500cc and above'])
         elif selected_category == 'Electric':
             input_engine_size.configure (values=['None'])
-
 
 def create_gui():
     global list_fuel_type, input_vehicle_age, dict_vehicle_age, dict_fuel_type, input_engine_size, input_vehicle_cost, input_fuel_type, input_exchange_rate, result_text
